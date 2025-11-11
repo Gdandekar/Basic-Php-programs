@@ -18,19 +18,23 @@ if (isset($_GET['num1']) && isset($_GET['num2']) && isset($_GET['operator'])) {
             break;
         case '/':
             if ($num2 == 0) {
-                echo "Error: Division by zero is not allowed.";
-                exit;
+                $result = "Error: Division by zero!";
+            } else {
+                $result = $num1 / $num2;
             }
-            $result = $num1 / $num2;
             break;
         default:
-            echo "Invalid operator!";
-            exit;
+            $result = "Invalid operator!";
+            break;
     }
 
-    echo "Result: $num1 $operator $num2 = $result";
-} else {
-    echo "Usage example: <br>";
-    echo "calculator.php?num1=10&operator=*&num2=5";
+    echo "<h3>Result: $num1 $operator $num2 = $result</h3>";
 }
 ?>
+
+<form method="get">
+    First Number: <input type="number" name="num1" required><br><br>
+    Operator (+, -, *, /): <input type="text" name="operator" required><br><br>
+    Second Number: <input type="number" name="num2" required><br><br>
+    <input type="submit" value="Calculate">
+</form>
