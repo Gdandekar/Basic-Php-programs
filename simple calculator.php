@@ -1,38 +1,36 @@
 <?php
-echo "Simple PHP Calculator\n";
+if (isset($_GET['num1']) && isset($_GET['num2']) && isset($_GET['operator'])) {
+    $num1 = $_GET['num1'];
+    $num2 = $_GET['num2'];
+    $operator = $_GET['operator'];
 
-echo "Enter first number: ";
-$num1 = trim(fgets(STDIN));
+    $result = 0;
 
-echo "Enter operator (+, -, *, /): ";
-$operator = trim(fgets(STDIN));
-
-echo "Enter second number: ";
-$num2 = trim(fgets(STDIN));
-
-$result = 0;
-
-switch ($operator) {
-    case '+':
-        $result = $num1 + $num2;
-        break;
-    case '-':
-        $result = $num1 - $num2;
-        break;
-    case '*':
-        $result = $num1 * $num2;
-        break;
-    case '/':
-        if ($num2 == 0) {
-            echo "Error: Division by zero is not allowed.\n";
+    switch ($operator) {
+        case '+':
+            $result = $num1 + $num2;
+            break;
+        case '-':
+            $result = $num1 - $num2;
+            break;
+        case '*':
+            $result = $num1 * $num2;
+            break;
+        case '/':
+            if ($num2 == 0) {
+                echo "Error: Division by zero is not allowed.";
+                exit;
+            }
+            $result = $num1 / $num2;
+            break;
+        default:
+            echo "Invalid operator!";
             exit;
-        }
-        $result = $num1 / $num2;
-        break;
-    default:
-        echo "Invalid operator!\n";
-        exit;
-}
+    }
 
-echo "Result: $num1 $operator $num2 = $result\n";
+    echo "Result: $num1 $operator $num2 = $result";
+} else {
+    echo "Usage example: <br>";
+    echo "calculator.php?num1=10&operator=*&num2=5";
+}
 ?>
